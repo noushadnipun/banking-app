@@ -21,9 +21,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/login', [BankingController::class, 'login']);
-
+Route::post('/register', [BankingController::class, 'createUser']);
 Route::group(['middleware' => 'auth'], function(){
-    Route::post('/users', [BankingController::class, 'createUser']);
     Route::get('/transactions', [BankingController::class, 'showTransactions']);
     Route::get('/deposit', [BankingController::class, 'showDeposits']);
     Route::post('/deposit', [BankingController::class, 'deposit']);

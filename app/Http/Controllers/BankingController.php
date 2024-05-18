@@ -15,7 +15,7 @@ class BankingController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'account_type' => 'required|string|in:savings,student',
+            'account_type' => 'required|string|in:Individual,Business',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
         ]);
@@ -27,8 +27,11 @@ class BankingController extends Controller
             'password' => Hash::make($request->password),
             'balance' => 0,
         ]);
+        // Log in the user
+        Auth::login($user);
 
-        return response()->json($user, 201);
+        // Redirect to the home page after successful registration
+        return redirect('/home');
     }
 
     public function login(Request $request)
