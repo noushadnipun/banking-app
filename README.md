@@ -10,10 +10,10 @@ This project is a simple banking system built with Laravel 10, where users can r
 - Withdraw money with specific conditions for fees
 
 ## Requirements
-PHP >= 8.1
-Composer
-MySQL
-Node.js & npm
+- PHP >= 8.1
+- Composer
+- MySQL
+- Node.js & npm
 
 ## Setup Instructions
 - Clone the Repository
