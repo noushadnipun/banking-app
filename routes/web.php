@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\BankingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('home');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/login', [BankingController::class, 'login']);
+
+Route::group(['middleware' => 'auth'], function(){
+    Route::post('/users', [BankingController::class, 'createUser']);
+    Route::get('/transactions', [BankingController::class, 'showTransactions']);
+    Route::get('/deposit', [BankingController::class, 'showDeposits']);
+    Route::post('/deposit', [BankingController::class, 'deposit']);
+    Route::get('/withdrawal', [BankingController::class, 'showWithdrawals']);
+    Route::post('/withdrawal', [BankingController::class, 'withdrawal']);
+});
+
+
