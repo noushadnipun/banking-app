@@ -43,8 +43,8 @@ class BankingController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
-            return response()->json(Auth::user(), 200);
+            return redirect('/home');
+//            return response()->json(Auth::user(), 200);
         }
 
         return response()->json(['message' => 'Invalid credentials'], 401);
